@@ -91,3 +91,8 @@ ifmail    unix  -       n       n       -       -       pipe
   flags=F user=ftn argv=/usr/lib/ifmail/ifmail -r $nexthop ($recipient)
 bsmtp     unix  -       n       n       -       -       pipe
   flags=Fq. user=foo argv=/usr/local/sbin/bsmtp -f $sender $nexthop $recipient
+<% if @use_dovecot_lda %>
+dovecot   unix  -       n       n       -       -       pipe
+  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/libexec/dovecot/deliver -d ${recipient}
+<% end -%>
+

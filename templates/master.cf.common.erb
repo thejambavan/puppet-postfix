@@ -17,10 +17,6 @@ amavis unix - - - - 2 smtp
         -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
         -o smtpd_bind_address=127.0.0.1
 <% end -%>
-<% if @use_dovecot_lda %>
-dovecot   unix  -       n       n       -       -       pipe
-  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/deliver -d ${recipient}
-<% end -%>
 <% if @use_schleuder %>
 schleuder  unix  -       n       n       -       -       pipe
   flags=DRhu user=schleuder argv=/usr/bin/schleuder ${user}

@@ -88,7 +88,6 @@ mailman   unix  -       n       n       -       -       pipe
   ${nexthop} ${user}
 <% if @use_dovecot_lda %>
 dovecot   unix  -       n       n       -       -       pipe
-  flags=DRhu user=vmail:vmail argv=/usr/lib/dovecot/deliver -d ${recipient}
-#  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/deliver -d ${recipient}
+  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/deliver -d ${recipient}
 <% end -%>
 

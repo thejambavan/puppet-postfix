@@ -93,6 +93,8 @@ bsmtp     unix  -       n       n       -       -       pipe
   flags=Fq. user=foo argv=/usr/local/sbin/bsmtp -f $sender $nexthop $recipient
 <% if @use_dovecot_lda %>
 dovecot   unix  -       n       n       -       -       pipe
-  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/libexec/dovecot/deliver -d ${recipient}
+  flags=DRhu user=vmail:vmail argv=/usr/lib/dovecot/deliver -d ${recipient}
+#  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/deliver -d ${recipient}
+
 <% end -%>
 

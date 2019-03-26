@@ -87,7 +87,7 @@ uucp      unix  -       n       n       -       -       pipe
 #
 <% unless @use_dovecot_lda %>
 # SPF Checking
-   policy-spf unix - n n - - spawn user=nobody argv=/usr/libexec/postfix/policyd-spf /etc/policyd-spf/policyd-spf.conf
+policy-spf unix - n n - - spawn user=nobody argv=/usr/libexec/postfix/policyd-spf /etc/policyd-spf/policyd-spf.conf
 <% end -%>
 # Other external delivery methods.
 #

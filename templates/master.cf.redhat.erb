@@ -85,6 +85,10 @@ cyrus     unix  -       n       n       -       -       pipe
 uucp      unix  -       n       n       -       -       pipe
   flags=Fqhu user=uucp argv=uux -r -n -z -a$sender - $nexthop!rmail ($recipient)
 #
+<% unless @use_dovecot_lda %>
+# SPF Checking
+   policy-spf unix - n n - - spawn user=nobody argv=/usr/libexec/postfix/policyd-spf /etc/policyd-spf/policyd-spf.conf
+<% end -%>
 # Other external delivery methods.
 #
 ifmail    unix  -       n       n       -       -       pipe

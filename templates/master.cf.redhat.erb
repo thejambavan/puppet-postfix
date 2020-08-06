@@ -20,6 +20,8 @@ smtp      inet  n       -       n       -       -       smtpd
 <% if @master_smtps -%>
 <%= @master_smtps %>
 <% end -%>
+# FIXME: build a generalised master.cf entry framework
+10025      inet n       -       n       -       1       postscreen
 #smtp      inet  n       -       n       -       -       smtpd
 #submission inet n       -       n       -       -       smtpd
 #  -o smtpd_enforce_tls=yes

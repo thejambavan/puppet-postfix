@@ -94,6 +94,7 @@ describe 'postfix' do
     -o smtpd_client_restrictions=check_client_access,hash:/etc/postfix/access,reject",
     :master_smtps        => 'smtps     inet  n       -       -       -       -       smtpd',
     :master_submission   => 'submission inet n       -       -       -       -       smtpd',
+    :master_smtpd        => 'smtpd inet n       -       -       -       -       smtpd',
             } }
 
             it { is_expected.to contain_package('postfix') }

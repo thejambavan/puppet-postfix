@@ -90,6 +90,7 @@ class postfix (
   Optional[String]                $master_smtp         = undef,         # postfix_master_smtp
   Optional[String]                $master_smtps        = undef,         # postfix_master_smtps
   Optional[String]                $master_submission   = undef,         # postfix_master_submission
+  Optional[String]                $master_smtpd        = undef,         # postfix_master_smtpd
   Boolean                         $mta                 = false,
   String                          $mydestination       = '$myorigin',   # postfix_mydestination
   String                          $mynetworks          = '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128', # postfix_mynetworks

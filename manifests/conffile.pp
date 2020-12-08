@@ -21,10 +21,13 @@
 #
 # [*mode*]
 #   The file permissions of the file.
-#   Defaults to 0644
+#   Defaults to 0640
 #
 # [*options*]
 #   Hash with options to use in the template
+#
+# [*show_diff*]
+#   Boolean that sets File show_diff parameter
 #
 # == Usage:
 # postfix::conffile { 'ldapoptions.cf':
@@ -44,12 +47,13 @@
 # }
 #
 define postfix::conffile (
-  Enum['present', 'absent', 'directory'] $ensure   = 'present',
-  Variant[Array[String], String, Undef]  $source   = undef,
-  Optional[String]                       $content  = undef,
-  Stdlib::Absolutepath                   $path     = "/etc/postfix/${name}",
-  String                                 $mode     = '0644',
-  Hash                                   $options  = {},
+  Enum['present', 'absent', 'directory'] $ensure    = 'present',
+  Variant[Array[String], String, Undef]  $source    = undef,
+  Optional[String]                       $content   = undef,
+  Stdlib::Absolutepath                   $path      = "/etc/postfix/${name}",
+  String                                 $mode      = '0640',
+  Hash                                   $options   = {},
+  Boolean                                $show_diff = true,
 ) {
   include ::postfix::params
 
@@ -79,16 +83,17 @@ define postfix::conffile (
   }
 
   file { "postfix conffile ${name}":
-    ensure  => $ensure,
-    path    => $path,
-    mode    => $mode,
-    owner   => 'root',
-    group   => 'postfix',
-    seltype => $postfix::params::seltype,
-    require => Package['postfix'],
-    source  => $source,
-    content => $manage_content,
-    notify  => Service['postfix'],
+    ensure    => $ensure,
+    path      => $path,
+    mode      => $mode,
+    owner     => 'root',
+    group     => 'postfix',
+    seltype   => $postfix::params::seltype,
+    require   => Package['postfix'],
+    source    => $source,
+    content   => $manage_content,
+    show_diff => $show_diff,
+    notify    => Service['postfix'],
   }
 
 }

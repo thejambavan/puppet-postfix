@@ -27,7 +27,8 @@
 define postfix::hash (
   Enum['present', 'absent']             $ensure='present',
   Variant[Array[String], String, Undef] $source=undef,
-  Variant[Array[String], String, Undef] $content=undef,
+  Optional[Variant[Sensitive[String],String]] $content = undef,
+  Variant[String[4,4], Undef]           $mode='0640',
 ) {
   include ::postfix::params
 
@@ -47,6 +48,7 @@ define postfix::hash (
     content => $content,
     type    => 'hash',
     path    => $name,
+    mode    => $mode,
   }
 
   Class['postfix'] -> Postfix::Hash[$title]
